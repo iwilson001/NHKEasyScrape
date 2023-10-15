@@ -1,27 +1,11 @@
-# React + TypeScript + Vite
+# Scraping app for NHK Easy article data
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The purpose of this app is to grab NHK Easy articles so I don't have to copy and paste and disable furigana
 
-Currently, two official plugins are available:
+# Goals/Iterations
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- v1: Grab article title and body, display on screen, no furigana
 
-## Expanding the ESLint configuration
+- v2: Integrate WaniKani api to not remove furigana when not known on WK
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- v3: Add definitions for all unknown vocab (kanji, hiragana, verbs, and katakana)

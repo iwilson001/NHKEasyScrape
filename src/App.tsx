@@ -1,14 +1,13 @@
-import { useState } from "react";
-import "./App.css";
-import * as cheerio from "cheerio";
+import { ChangeEvent, useState } from 'react';
+import './App.css';
+import * as cheerio from 'cheerio';
 
 function App() {
-  const [articleText, setArticleText] = useState("");
+  const [articleText, setArticleText] = useState('');
+  const [articleUrl, setArticleUrl] = useState('');
 
   const handleClick = async () => {
-    await fetch(
-      "https://www3.nhk.or.jp/news/easy/k10014223691000/k10014223691000.html"
-    )
+    await fetch(articleUrl)
       .then((val) => {
         return val.text();
       })
@@ -17,11 +16,16 @@ function App() {
 
         console.log($.html());
 
-        $("h1").each((i, el) => {
+        $('h1').each((i, el) => {
           const text = $(el).text();
-          console.log("🚀 ~ file: App.tsx:22 ~ $ ~ text:", text);
+          setArticleText(text);
+          console.log('🚀 ~ file: App.tsx:22 ~ $ ~ text:', text);
         });
       });
+  };
+
+  const handleUrlChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setArticleUrl(e.target.value);
   };
 
   return (
@@ -29,12 +33,20 @@ function App() {
       <h1>
         Please insert a valid link to an NHK Easy article to see the text:
       </h1>
-      <input type="text" style={{ minWidth: "35rem" }}></input>
+      <h2>
+        https://www3.nhk.or.jp/news/easy/k10014252431000/k10014252431000.html
+      </h2>
+      <input
+        value={articleUrl}
+        onChange={handleUrlChange}
+        type="text"
+        style={{ minWidth: '35rem' }}
+      />
       <button type="button" onClick={handleClick}>
         Get article text
       </button>
       <br />
-      <p style={{ maxWidth: "30rem" }}>{articleText}</p>
+      <p style={{ maxWidth: '30rem' }}>{articleText}</p>
     </>
   );
 }
